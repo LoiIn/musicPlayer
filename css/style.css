@@ -151,7 +151,7 @@ div#category ul li {display: inline-block;margin: 15px 20px;font-size: 17px;}
 
 div#header {width: 100%;position: fixed;top: 0;left: 0;right: 0;color: white;display: flex;background-color: transparent;padding: 20px 100px;}
 
-.wrapper {width: 100%;height: 100%;background-image: url(../music_image/banner.png);position: fixed;top: 0;left: 0;right: 0;bottom: 0;background-size: cover;z-index: 1;}
+.wrapper {width: 100%;height: 100%;background-image: url(../images/banner.png);position: fixed;top: 0;left: 0;right: 0;bottom: 0;background-size: cover;z-index: 1;}
 
 
 
