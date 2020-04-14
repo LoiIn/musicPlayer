@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoiIn's Music</title>
+    <link rel="shortcut icon" type="image/png" href="./music_image/logo.png">
+    <link rel="stylesheet" href="css/animate.css"> 
+    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div id="header">
+            <div class="logo">
+                <img src="music_image/logo1.png" alt="" width="80px" height="50px">
+            </div>
+            <div id="category">
+                <ul>
+                    <li><a href="#" >Nhạc trẻ</a></li>
+                    <li><a href="#">Bolero</a></li>
+                    <li><a href="#">Aucostic</a></li>
+                    <li><a href="#">Nhật</a></li>
+                    <li><a href="#">US-UK</a></li>
+                   
+                </ul>
+            </div>
+            <div id="contact">
+                <ul>
+                    <li><a href="https://www.facebook.com/LoiIn99" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="https://github.com/LoiIn" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+                    <li><a href="https://gitlab.com/LoiIn" target="_blank"><i class="fa fa-gitlab" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="lyrics">
+            <div id="song_infor">
+                <h3></h3>
+                <i></i>
+            </div>
+            <div id="contents">
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                    Consectetur officia impedit facere animi itaque 
+                    dolores, nihil in distinctio harum praesentium, libero 
+                    quibusdam ea omnis? Odit aliquam veritatis officia sunt ipsam!</p>
+            </div>
+            
+            <i class="fa fa-caret-right " id="fa_caret_1" aria-hidden="true"></i>
+            
+        </div>
+        <div id="player">
+            <div id="player-track">
+                <div id="author-name"></div>
+                <div id="track-name"></div>
+                <div id="track-time">
+                    <div id="current-time"></div>
+                    <div id="track-length"></div>
+                </div>
+                <div id="s-area">
+                    <div id="ins-time"></div>
+                    <div id="s-hover"></div>
+                    <div id="seek-bar"></div>
+                </div>
+            </div>
+            <div id="player-content">
+                <div id="album-art">
+                    <img src="" class="active">
+                    <div id="buffer-box">Buffering ...</div>
+                </div>
+                <div id="player-controls">
+                    <div class="control">
+                        <div class="button" id="play-previous">
+                            <i class="fas fa-backward"></i>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <div class="button" id="play-pause">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <div class="button" id="play-next">
+                            <i class="fas fa-forward"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="album_list">
+            <div id="album_infor">
+                <h3>Title of Songs</h3>
+                <i>Number of Songs</i>
+            </div>
+            <div id="list_songs">
+                <ul></ul>
+            </div>
+            <i class="fa fa-caret-left" id="fa_caret_2" aria-hidden="true"></i>
+        </div>
+    </div>
+    <!-- <script src="js/jquery.min.js"></script> -->
+    <script src= "https://code.jquery.com/jquery-3.4.1.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+    <!-- <script src="js/wow.js"></script>
+    <script>
+      new WOW().init();
+    </script> -->
+    <!-- <script src="js/music.js"></script> -->
+    <script src="js/me.js"></script>
+</body>
+</html>
