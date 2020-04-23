@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Sign up</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <div id="sign_up">
+        <div class="container">
+            <h1 class="text-center">SIGN UP</h1>
+            <div class="form-group">
+              <input type="text" class="form-control" name="" id="new_acc" aria-describedby="helpId" placeholder="New account (name@gmail.com)">
+              <p id="error1" style="color: yellow;margin-left: 5px;margin-top: 5px;display: none;transition: 0.3s;">Invalid Mail!</p>
+            </div>
+            
+            <div class="form-group">
+                <input type="password" class="form-control" name="" id="new_pass" aria-describedby="helpId" placeholder="Password (5->20)">
+                <p id="error2" style="color: yellow;margin-left: 5px;margin-top: 5px;display: none;transition: 0.3s;">Invalid Pass!</p>
+            </div>
+            <div class="form-group text-center">
+                <a name="" id="create_acc" class="btn btn-success " href="login.html" role="button">Create</a>
+            </div>
+            <div class="form-group text-center">
+              <a href="login.html" style="color: yellow; text-decoration: none;transition: 0.4s;"><b> Have account??</b></a>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        #sign_up{
+        position: fixed;
+        background-color: #181542;
+        width: 100%;height: 100%;
+        left: 0;top: 0;
+      }
+      #sign_up .container {
+        top: 50%;left: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        width: 400px;
+        padding: 20px 30px;
+        background-color: #d4d3d38a;
+      }
+      #sign_up .container h1{
+        color: green;
+        font-weight: 600;
+        text-shadow: 1px 1px 0px black;
+      }
+    </style>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="js/login.js"></script>
+  </body>
+</html>

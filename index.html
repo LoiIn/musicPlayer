@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LoiIn's Music</title>
     <link rel="shortcut icon" type="image/png" href="./images/logo.png">
-    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -17,19 +17,17 @@
             </div>
             <div id="category">
                 <ul>
-                    <li><a href="#" >Nhạc trẻ</a></li>
+                    <li><a href="#">Nhạc trẻ</a></li>
                     <li><a href="#">Bolero</a></li>
-                    <li><a href="#">Aucostic</a></li>
-                    <li><a href="#">Nhật</a></li>
-                    <li><a href="#">US-UK</a></li>
-                   
+                    <li><a href="#">Nhạc Nhật</a></li>
+                    <li><a href="#">Nhạc US-UK</a></li>
+                    <li><a href="#">Khác ...</a></li>
                 </ul>
             </div>
             <div id="contact">
                 <ul>
-                    <li><a href="https://www.facebook.com/LoiIn99" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                    <li><a href="https://github.com/LoiIn" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-                    <li><a href="https://gitlab.com/LoiIn" target="_blank"><i class="fa fa-gitlab" aria-hidden="true"></i></a></li>
+                    <li><a href="https://www.facebook.com/LoiIn99" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="https://github.com/LoiIn" target="_blank"><i class="fa fa-github"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -38,17 +36,22 @@
                 <h3></h3>
                 <i></i>
             </div>
+
+            <div id="update_btn">
+                <a name="" id="" class="btn btn-primary" href="#" role="button" >
+                   Update <i class="fas fa-music" aria-hidden="true"></i> 
+                </a>
+            </div>
+
             <div id="contents">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                    Consectetur officia impedit facere animi itaque 
-                    dolores, nihil in distinctio harum praesentium, libero 
-                    quibusdam ea omnis? Odit aliquam veritatis officia sunt ipsam!</p>
+               <p></p>
             </div>
             
             <i class="fa fa-caret-right " id="fa_caret_1" aria-hidden="true"></i>
             
         </div>
         <div id="player">
+            <!-- <audio src="" id="my_audio"></audio> -->
             <div id="player-track">
                 <div id="author-name"></div>
                 <div id="track-name"></div>
@@ -88,17 +91,67 @@
         </div>
         <div id="album_list">
             <div id="album_infor">
-                <h3>Title of Songs</h3>
+                <h3>Category of Songs</h3>
                 <i>Number of Songs</i>
+            </div>
+            <div id="add_button">
+                <a name="" id="" class="btn btn-primary" href="#" role="button">ADD</a>
+            </div>
+            <div id="delete_button">
+                <a name="" id="" class="btn btn-primary" href="#" role="button"><i class="fas fa-trash" aria-hidden="true"></i></a>
             </div>
             <div id="list_songs">
                 <ul></ul>
             </div>
             <i class="fa fa-caret-left" id="fa_caret_2" aria-hidden="true"></i>
         </div>
+
+        <div id="post_area">
+            <form id="post_form" class="">
+                <h3>ADD SONG</h3>
+                <input type="text" class="form-control" name="" id="f_category" placeholder="category" disabled>
+                <input type="text" class="form-control" name="" id="f_author" placeholder="Author (can't space)">
+                <input type="text" class="form-control" name="" id="f_name" placeholder="Name (can't space)">
+                <label for="f_url" id="label_mp3">choose mp3 file</label>
+                <input type="file" class="form-control" name="" id="f_url" placeholder="URL">
+                <label for="f_img" id="label_img">choose img file(jpg, png, jpeg)</label>
+                <input type="file" class="form-control" name="" id="f_img" placeholder="image">
+                <input type="text" class="form-control" name="" id="f_lyric" placeholder="Lyric" style="margin-bottom: 20px;">
+                <a name="" id="cancel_btn" class="btn btn-primary" href="#" role="button">Cancel</a>
+                <a type="submit" name="" id="request_btn" class="btn btn-primary" href="#" role="button">Submit</a>
+            </form>
+        </div>
+
+        <div id="update_area">
+            <form id="update_form" class="">
+                <h3>UPDATE</h3>
+                <label for="">New Lyrics ...</label>
+                <textarea placeholder="Song's lyrics"></textarea>
+                <a name="" id="cancel_btn1" class="btn btn-primary" href="#" role="button">Cancel</a>
+                <a type= "submit" name="" id="new_lyrics" class="btn btn-primary" href="#" role="button">Update</a>
+            </form>
+        </div>
+
+        <div id="remove_area">
+            <form id="remove_form" class="">
+                <h3>REMOVE</h3>
+                <div id="check_remove">
+                      <label class="container" style="color: green;">Remove All
+                        <input type="checkbox" id="remove_all" >
+                        <span class="checkmark"  ></span>
+                      </label>
+                </div>
+                <a name="" id="cancel_btn2" class="btn btn-primary" href="#" role="button">Cancel</a>
+                <a type= "submit" name="" id="remove_btn" class="btn btn-primary" href="#" role="button">Remove</a>
+            </form>
+        </div>
+
+
+
     </div>
     <!-- <script src="js/jquery.min.js"></script> -->
-    <script src= "https://code.jquery.com/jquery-3.4.1.min.js"></script> 
+    <!-- <script src= "https://code.jquery.com/jquery-3.4.1.min.js"></script>  -->
+    <script src="js/jquery-3.5.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
     <!-- <script src="js/wow.js"></script>
     <script>
@@ -106,5 +159,6 @@
     </script> -->
     <!-- <script src="js/music.js"></script> -->
     <script src="js/me.js"></script>
+    <!-- <script src="js/update.js"></script> -->
 </body>
 </html>

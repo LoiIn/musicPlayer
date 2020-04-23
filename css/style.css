@@ -1,5 +1,240 @@
 *{margin: 0;padding: 0;}
 
+#check_remove .container {
+    display: block;
+    position: relative;
+    padding-left: 10px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    text-align: left;
+  }
+  
+  /* Hide the browser's default checkbox */
+#check_remove  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+#check_remove  .checkmark {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+  }
+  
+  /* On mouse-over, add a grey background color */
+#check_remove  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+#check_remove  .container input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+#check_remove  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+#check_remove  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+#check_remove  .container .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+#check_remove{
+    margin-top: 20px;
+    margin-bottom: 30px;
+    width: 100%;
+    height: 250px;
+    overflow-y: scroll;
+}
+
+#check_remove::-webkit-scrollbar{width: 10px;}
+
+#check_remove::-webkit-scrollbar-thumb{border-radius: 5px;background-color:#ccc;	}
+
+
+form#remove_form h3 {
+    color:red;
+    text-shadow: 1px 1px 0px black;
+    font-size: 30px;
+}
+
+div#remove_area {
+    position: fixed;
+    top: 0;left: 0;bottom: 0;right: 0;
+    z-index: 20;
+    background-color: #060606a6;
+    display: none;
+}
+
+form#remove_form {
+    position: absolute;
+    width: 400px;
+    padding: 20px;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid black;
+    border-radius: 6px;
+    text-align: center;
+}
+
+a#cancel_btn2 {
+    background-color: #0095ff;
+    color: black;
+    text-decoration: none;
+    padding: 5px 20px;
+    border-radius: 5px;
+}
+
+a#remove_btn {
+    text-decoration: none;
+    color: black;
+    background-color: red;
+    padding: 5px 20px;
+    border-radius: 5px;
+}
+
+form#update_form {
+    position: absolute;
+    width: 400px;
+    padding: 20px;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid black;
+    border-radius: 6px;
+    text-align: center;
+}
+
+form#update_form h3 {
+    color:#0095ff;
+    text-shadow: 1px 1px 0px black;
+    font-size: 30px;
+}
+
+a#new_lyrics{
+    text-decoration: none;
+    color: black;
+    background-color: #0095ff;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+form#update_form textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding-top: 10px;
+    padding-left: 5px;
+    height: 250px;
+    overflow-y: scroll;
+    border-radius: 3px;
+    border: 1px solid gray;
+    margin-bottom: 20px;
+}
+
+div#update_area {
+    position: fixed;
+    top: 0;left: 0;bottom: 0;right: 0;
+    z-index: 20;
+    background-color: #060606a6;
+    display: none;
+}
+
+a#request_btn {
+    text-decoration: none;
+    color: black;
+    background-color: #0ca70c;
+    padding: 5px 20px;
+    border-radius: 5px;
+}
+
+a#cancel_btn1 {
+    background-color: red;
+    color: black;
+    text-decoration: none;
+    padding: 5px 20px;
+    border-radius: 5px;
+}
+
+a#cancel_btn {
+    background-color: red;
+    color: black;
+    text-decoration: none;
+    padding: 5px 20px;
+    border-radius: 5px;
+}
+
+
+form#post_form h3 {
+    color: #0ca70c;
+    text-shadow: 1px 1px 0px black;
+    font-size: 30px;
+}
+
+form#post_form input {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px 0;
+    padding-left: 5px;padding-right: -5px;
+    border-radius: 3px;
+    border: 1px solid gray;
+}
+
+form#post_form label{text-align: left !important;} 
+
+form#post_form {
+    position: absolute;
+    width: 400px;
+    padding: 20px;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid black;
+    border-radius: 6px;
+    text-align: center;
+}
+
+div#post_area {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 20;
+    background-color: #060606a6;
+    display: none;
+}
 
 #player-track.active
 {top: 0px;}
@@ -95,11 +330,28 @@
 
 #player{position: fixed;width: 440px;height: 200px;top: 50%;left: 50%;transform: translate(-50%, -50%);background-color: transparent;overflow: hidden;}
 
+/* album_list css */
 .song_active{color: white !important;}
 
-div#list_songs {position: absolute;top: 80px;right: 0;padding: 0 20px;}
+div#delete_button{position: absolute;right: 10px;top: 10px;background-color: red;padding: 10px 15px;border-radius: 5px ;}
 
-div#list_songs ul{list-style: none;}
+div#delete_button a{color: white;transition: 0.4s;}
+
+div#delete_button:hover a{font-size: 20px;}
+
+div#add_button {position: absolute;right: 70px;top: 20px;}
+
+#add_button:hover a{font-size: 20px;}
+
+div#add_button a {background-color: #0ca70c;color: white;text-decoration: none;padding: 10px;border-radius: 5px;transition: 0.4s;}
+
+div#list_songs {position: absolute;top: 80px;left: 0;padding: 0 20px;width: 360px;}
+
+div#list_songs ul{list-style: none;width: 350px; padding-right: 10px;height: 400px;overflow-y: scroll;}
+
+div#list_songs ul::-webkit-scrollbar{width: 10px;}
+
+div#list_songs ul::-webkit-scrollbar-thumb{border-radius: 5px;background-color: rgb(138, 138, 138);	}
 
 div#list_songs ul li{margin: 10px 0;}
 
@@ -109,15 +361,28 @@ div#list_songs ul li a:hover{color: white;}
 
 #fa_caret_2{position: absolute;transform: scale(1.5) translateY(-50%);top:50%;left: -15px;}
 
-div#album_infor {position: absolute;top: 0;right: 0;width: 380px;padding: 10px 20px 10px 0;text-align: right;background-color: #9c979752;}
+div#album_infor {position: absolute;top: 0;right: 0;width: 380px;padding: 10px 0px 10px 20px;text-align: left;background-color: #9c979752;}
 
 #album_infor h3{text-transform: uppercase;}
 
 div#album_list {width: 400px;height: 500px;background-color: #d4d3d342;position: fixed;right: -400px;top: 50%;transform: translateY(-50%);border-top-left-radius: 10px;border-bottom-left-radius: 10px;border-left: 20px solid white;}
 
+/* lyrics ccss */
+div#update_btn {position: absolute;right: 20px;top: 20px;}
+
+div#update_btn a {color: white;text-decoration: none;padding: 10px;background-color: #0095ff;border-radius: 5px;transition: 0.4s;}
+
+div#update_btn:hover a {font-size: 18px;}
+
 #lyrics #fa_caret_1{position: absolute;transform: scale(1.5) translateY(-50%);top:50%;right: -15px;z-index: 3;}
 
-div#contents {position: absolute;top: 80px;left: 0;padding: 0 20px;}
+div#contents {position: absolute;top: 80px;left: 0;padding: 0 20px;width: 360px;}
+
+div#contents p{width: 350px;padding-right: 10px;height: 400px;overflow-y: scroll;}
+
+#contents p::-webkit-scrollbar{width: 10px;}
+
+#contents p::-webkit-scrollbar-thumb{border-radius: 5px;background-color: rgb(138, 138, 138);	}
 
 div#song_infor {position: absolute;top: 0;left: 0;width: 380px;padding-top: 10px;padding-bottom: 10px;padding-left: 20px;background-color: #9c979752;}
 
@@ -127,15 +392,14 @@ div#song_infor small {margin: 10px 0;}
 
 div#lyrics {width: 400px;height: 500px;background-color: #d4d3d342;position: fixed;left: -400px;top: 50%;transform: translateY(-50%);border-top-right-radius: 10px;border-bottom-right-radius: 10px;border-right: 20px solid white;}
 
-body {width: 100%;font-family: cursive;}
-
+/* header css */
 div#contact {width: 25%;/* text-align: right; */}
 
 div#contact ul {display: inline;list-style: none;}
 
 div#contact ul li {display: inline-block;margin: 15px 15px;font-size: 17px;}
 
-div#category {width: 60%;text-align: center;/* margin: auto; */}
+div#category {width:60%;text-align: center;/* margin: auto; */}
 
 div#category ul {display: inline;list-style: none;}
 
@@ -153,5 +417,6 @@ div#header {width: 100%;position: fixed;top: 0;left: 0;right: 0;color: white;dis
 
 .wrapper {width: 100%;height: 100%;background-image: url(../images/banner.png);position: fixed;top: 0;left: 0;right: 0;bottom: 0;background-size: cover;z-index: 1;}
 
+body {width: 100%;font-family: 'Consolas';}
 
 

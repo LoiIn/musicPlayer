@@ -28,14 +28,38 @@ $(document).ready(function () {
         $(this).toggleClass("fa-caret-right");
         $(this).toggleClass("fa-caret-left");
     });
+
+    let songArr = [];
    
     
-    //get data from mock api
+    //1>get data from mock api
     $.ajax({
         type: "GET",
         url: "https://5e90a65b2810f4001648b1be.mockapi.io/api/v1/music",
         data: "music",
         success: function (music) {
+
+            getArrSongs = function(title){
+                songArr.splice(0, songArr.length);
+                var a = title,
+                    count = 0;
+                for(i = 0; i < music.length; i++){
+                    if(music[i].category === a){
+                        var song  = new Object();
+                        song.id = count + 1;
+                        song.category = a;
+                        song.author = music[i].author;
+                        song.name = music[i].name;
+                        song.track = music[i].track;
+                        song.image = music[i].image;
+                        song.lyric = music[i].lyric;
+                        songArr[count] = song;
+                        count++;
+                    } 
+                }
+            }
+
+            getArrSongs('Nhạc trẻ');
 
             // show infor of title
             var list_song = $("#category ul li a");
@@ -48,8 +72,11 @@ $(document).ready(function () {
                     TweenMax.to($("#album_list"), 1.5, {right:0,ease: "power4.out"});
                     $("#fa_caret_2").attr("class", "fa fa-caret-right");
 
+                    // update list song
+                    getArrSongs($(this).html());
                     // show infor
                     updateListSong($(this).html());
+                    
                 });    
                 
             })//end show infor title
@@ -72,18 +99,18 @@ $(document).ready(function () {
                 var count = 0;
                 $("#album_infor h3").text(a);
                 function numberSongs(){
-                    for(i = 0; i < music.length; i++){
-                        if(music[i].category === a) count++;
+                    for(i = 0; i < songArr.length; i++){
+                        if(songArr[i].category === a) count++;
                     }
                 }
                 numberSongs();
                 $("#album_infor i").text(count + " songs");
 
                 function showListSongs(){
-                    for(i = 0; i < music.length; i++){
-                        if(music[i].category === a){
+                    for(i = 0; i < songArr.length; i++){
+                        if(songArr[i].category === a){
                             $("#list_songs ul").add(
-                                    `<li><a>${music[i].name}</a></li>`
+                                    `<li><a>${songArr[i].name}</a></li>`
                             ).appendTo('#list_songs ul');
                         }
                     }
@@ -98,8 +125,8 @@ $(document).ready(function () {
                 var song_click = $("#list_songs ul li a");
                 var count = 0;
                 function numberSongs(){
-                    for(i = 0; i < music.length; i++){
-                        if(music[i].category === $("#album_infor h3").html()) count++;
+                    for(i = 0; i < songArr.length; i++){
+                        if(songArr[i].category === $("#album_infor h3").html()) count++;
                     }
                 }
                 song_click.each(function(){
@@ -110,8 +137,8 @@ $(document).ready(function () {
                         $("#fa_caret_1").attr("class", "fa fa-caret-left");
                         $(this).addClass("song_active");
                         numberSongs();
-                        for(i = 0; i < music.length; i++){
-                            if($(this).html() == music[i].name){
+                        for(i = 0; i < songArr.length; i++){
+                            if($(this).html() == songArr[i].name){
                                 selectSong2(i);
                             }
                         }
@@ -129,10 +156,11 @@ $(document).ready(function () {
                 ran_process, run_time, load_time, bar_position, pointer_pos, ran_seconds, 
                 get_seconds, get_minutes, loadInterval = null,
                 index = -1, author_name = $("#author-name"), track_name = $("#track-name");
+                // audio = $('#my_audio');
 
             function playPause(){
                 setTimeout(function(){
-                    if(audio.paused){
+                    if(audio.paused == true){
                         playTrack.addClass("active");
                         albumArt.addClass("active");
                         loading();
@@ -256,76 +284,72 @@ $(document).ready(function () {
             function checkstatusListSong(a){
                 if($("#album_infor h3").html() == a) return true;
                 else return false;
-            }
-
-            function getIndexSong(name){
-                var arr = $('#list_songs ul li a');
-                for( i =0;  i < arr.length; i++){
-                    if(arr[i].text == name){
-                        return i;
-                    }
-                }
-            }
-            
+            }            
             
             //play user's choosen song
             function selectSong(delta){
                 // update index
                 if(delta == 0 || delta == 1){
-                    // $("#list_songs ul li a").each(function(){$(this).removeClass("song_active");});
-                    // $('#list_songs ul li a:eq('+index+')').removeClass("song_active");
-                    if(index >= music.length - 1) index = 0;
+                    if(index >= songArr.length - 1) index = 0;
                     else index ++;
                 }
                 else if(delta == -1){
-                    // $("#list_songs ul li a").each(function(){$(this).removeClass("song_active");});
-                    // $('#list_songs ul li a:eq('+index+')').removeClass("song_active");
-                    if(index <= 0 ) index = music.length - 1;
+                    if(index <= 0 ) index = songArr.length - 1;
                     else index --;
                 }
 
                 //if current song is not inslid list,list will update   
-                if(checkstatusListSong(music[index].category) == false){
-                    updateListSong(music[index].category);
+                if(checkstatusListSong(songArr[index].category) == false){
+                    updateListSong(songArr[index].category);
                 }
                 $("#list_songs ul li a").each(function(){$(this).removeClass("song_active");});
-                var e = getIndexSong(music[index].name);
-                $('#list_songs ul li a:eq('+e+')').addClass("song_active");
+                // var e = getIndexSong(songArr[index].name);
+                $('#list_songs ul li a:eq('+index+')').addClass("song_active");
 
                 // play song[index]
-                playPauseBtn.attr("class", "fas fa-play");
+                // playPauseBtn.attr("class", "fas fa-play");
                 if(delta == 0){
                     albumArt.addClass('buffering active');
                 }else{
+                    playPauseBtn.attr("class", "fas fa-pause");
                     albumArt.removeClass('buffering');
-                    playTrack.removeClass('active');
-                    audio.play();
+                    // audio.play();
+                    // audio.autoplay = true;
                     // skip loading status when song is not play status
                     clearInterval(loadInterval);
                     loading();
                 }
+                audio.autoplay = true;
                 seek_bar.width(0);
                 cur_time.text('00:00');
                 length_of_song.text('00:00');
                 
                 // song's infor
-                author_name.text(music[index].author);
-                track_name.text(music[index].name);
-                audio.src = music[index].track;
-                $("#album-art img").attr("src", music[index].image);
+                author_name.text(songArr[index].author);
+                track_name.text(songArr[index].name);
+                audio.src = songArr[index].track;
+                
+                $("#album-art img").attr("src", songArr[index].image);
 
                 // song's name and lyrics
-                $('#song_infor h3').text(music[index].name);
-                $('#song_infor i').text(music[index].author);
-                $('#contents p').text(music[index].lyric);
+                $('#song_infor h3').text(songArr[index].name);
+                $('#song_infor i').text(songArr[index].author);
+                if(songArr[index].lyric == ''){
+                    $('#contents p').text("<Bài hát này hiện chưa có lời>")
+                }else{
+                    $('#contents p').text(songArr[index].lyric);
+                }
+                
             }
 
             function selectSong2(delta){
                 index = delta;
-                playPauseBtn.attr("class", "fas fa-play");
-                albumArt.removeClass('buffering');
-                playTrack.removeClass('active');
-                audio.play();
+                playPauseBtn.attr("class", "fas fa-pause");
+                albumArt.addClass('active');
+                playTrack.addClass('active');
+                // audio.play();
+                audio.autoplay = true;
+                
                 // skip loading status when song is not play status
                 clearInterval(loadInterval);
                 loading();
@@ -334,15 +358,19 @@ $(document).ready(function () {
                 length_of_song.text('00:00');
                 
                 // song's infor
-                author_name.text(music[index].author);
-                track_name.text(music[index].name);
-                audio.src = music[index].track;
-                $("#album-art img").attr("src", music[index].image);
+                author_name.text(songArr[index].author);
+                track_name.text(songArr[index].name);
+                audio.src = songArr[index].track;
+                $("#album-art img").attr("src", songArr[index].image);
 
                 // song's name and lyrics
-                $('#song_infor h3').text(music[index].name);
-                $('#song_infor i').text(music[index].author);
-                $('#contents p').text(music[index].lyric);
+                $('#song_infor h3').text(songArr[index].name);
+                $('#song_infor i').text(songArr[index].author);
+                if(songArr[index].lyric == ''){
+                    $('#contents p').text("<Bài hát này hiện chưa có lời>")
+                }else{
+                    $('#contents p').text(songArr[index].lyric);
+                }
             }
 
             // init player
@@ -362,7 +390,6 @@ $(document).ready(function () {
                 $(audio).on('timeupdate', function () {
                     currTime();
                 });
-                // $(audio).on('timeupdate',currTime);
 
                 $("#play-previous").on('click',function(){
                     selectSong(-1);
@@ -374,7 +401,209 @@ $(document).ready(function () {
 
             initPlayer();
 
+            //3> Update Lyrics
+             $('#new_lyrics').click(function (e) { 
+                e.preventDefault();
+                var e = getIndexSongFromDB(songArr[index].name);
+                $.ajax({
+                    type: "PUT",
+                    url: `https://5e90a65b2810f4001648b1be.mockapi.io/api/v1/music/${e}`,
+                    dataType: "json",
+                    data:{
+                        'lyric': $('#update_area textarea').val()
+                    },
+                    success: function (data) {
+                        alert('update success full!');
+                        $('#contents p').text(data.lyric);
+                        $('#update_area').css({'display':'none'});
+                    }
+                });
+            });
+
+           
+            
+            function getIndexSongFromDB(name){
+                for( i =0;  i < music.length; i++){
+                    if(music[i].name === name){
+                        return music[i].id;
+                    }
+                }
+            }
+
+            //remove song
+            $('#remove_all').click(function (e) { 
+                if (this.checked) {
+                    $('#check_remove input').each(function () { 
+                        $(this).prop('checked', true); //check 
+                    });            
+                } else {
+                    $('#check_remove input').each(function () { //loop through each checkbox
+                        $(this).prop('checked', false); //uncheck              
+                    });
+                }
+            });
+
+            loadListSongRemove();
+
+            function loadListSongRemove(){
+                for(i = 0; i < music.length; i ++){
+                    $("#check_remove").add(
+                        `<label class="container">${music[i].name}
+                        <input type="checkbox" id="l_${music[i].id}">
+                        <span class="checkmark"></span>
+                        </label>`
+                    ).appendTo('#check_remove');
+                }
+            }
+              
+            $('#check_remove input').click(function (e) { 
+                if(this.checked){
+                    var idd = $(this).attr('id');
+                    var iddArr = idd.split('_');
+                    $('#remove_btn').click(function (e) { 
+                        $.ajax({
+                            type: "DELETE",
+                            url: `https://5e90a65b2810f4001648b1be.mockapi.io/api/v1/music/${iddArr[iddArr.length-1]}`,
+                            data: JSON.stringify,
+                            dataType: 'json',
+                            contentType: 'application/json',
+                            success: function (song) {
+                                alert(song.name + ', is removed!');
+                            }
+                         });
+                    });
+                }
+            });
+            
+          
+
+            
+            
+
+   
+    
+            // setInterval(function(){
+            //     console.log(getIdRemove());
+            // },1000)
+
+
         }//ens success function
+        
+    });//end GET method
+
+     //2> add, delete, update song
+     $('#add_button').click(function (e) { 
+        e.preventDefault();
+        $('#post_area').css({'display':'block'});
+        TweenMax.to($("#lyrics"), 2.5, {left:-400,ease: "power4.out", delay:0.5});
+        $("#fa_caret_1").attr("class", "fa fa-caret-right");
+        $('#f_category').val($('#album_infor h3').html());
     });
 
+    $('#delete_button').click(function (e) { 
+        e.preventDefault();
+        $('#remove_area').css({'display':'block'});
+        TweenMax.to($("#lyrics"), 2.5, {left:-400,ease: "power4.out", delay:0.5});
+    });
+
+    $('#update_btn').click(function (e) { 
+        e.preventDefault();
+        $('#update_area').css({'display':'block'});
+        TweenMax.to($("#album_list"), 2.5, {right:-400,ease: "power4.out", delay:0.5});
+        $("#fa_caret_2").attr("class", "fa fa-caret-left");
+    });
+
+    $('#cancel_btn').click(function (e) { 
+        e.preventDefault();
+        $('#post_area').css({'display':'none'});
+    });
+
+    $('#cancel_btn1').click(function (e) { 
+        e.preventDefault();
+        $('#update_area').css({'display':'none'});
+    });
+
+    $('#cancel_btn2').click(function (e) { 
+        e.preventDefault();
+        $('#remove_area').css({'display':'none'});
+    });
+
+
+    //add song
+    $('#request_btn').click(function (e) { 
+        e.preventDefault();
+        if(checkAddForm() ==  false){
+            alert('Incorect! Check again!');
+        }
+        else{
+            var s1 = $('#f_url').val(),
+                s1str=   s1.split("\\"),
+                s2 = $('#f_img').val(),
+                s2str = s2.split('\\');
+                var musicStr ='';
+                var musicImg = 'images/'+ s2str[s2str.length-1];
+                if($('#f_category').val() == "Nhạc trẻ") musicStr = 'music/young/' + s1str[s1str.length-1];
+                if($('#f_category').val() == "Bolero") musicStr = 'music/bolero/' + s1str[s1str.length-1];
+                if($('#f_category').val() == "Nhạc Nhật") musicStr = 'music/nihon/' + s1str[s1str.length-1];
+                if($('#f_category').val() == "Nhạc US-UK") musicStr = 'music/us-uk/' + s1str[s1str.length-1];
+                if($('#f_category').val() == "Khác ...") musicStr = 'music/others/' + s1str[s1str.length-1];
+            $.ajax({
+                type: 'POST',
+                url: 'https://5e90a65b2810f4001648b1be.mockapi.io/api/v1/music',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify( { "category": $('#f_category').val(),
+                                        "author": $('#f_author').val(),
+                                        "name": $('#f_name').val(),
+                                        "track": musicStr,
+                                        "image": musicImg,
+                                        "lyric": $('#f_lyric').val()} ),
+                processData: false,
+                success: function( data, textStatus, jQxhr ){
+                    alert('Add(s) Song Successfull');
+                    $('#f_author').val('');
+                    $('#f_name').val('');
+                    $('#f_url').val('');
+                    $('#f_img').val('');
+                    $('#f_lyric').val('');
+                    $('#post_area').css({'display':'none'});
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    console.log( errorThrown );
+                }
+            });
+        }
+    });
+   
+    function checkAddForm(){
+        if(checkAuthor() == true && checkName()== true && checkUrl() == true && checkImg() == true) return true;
+        else{return false;}
+    }
+
+    function checkAuthor(){
+        if($('#f_author').val() == '') return false;
+        else return true;
+    }
+
+    function checkName(){
+        if($('#f_name').val() == '') return false;
+        else return true;
+    }
+
+    function checkUrl(){
+        var str = $('#f_url').val();
+        if(str.length == 0 || str.slice(str.length-4, str.length) != '.mp3') return false;
+        else return true;
+    }
+
+    function checkImg(){
+        var str = $('#f_img').val();
+        if(str.length == 0) return false;
+        else{
+            var Childs = str.slice(str.length-4, str.length);
+            if(Childs == '.jpg' || Childs == '.png' || Childs == 'jpeg') return true;
+            else return false;
+        }
+         
+    }      
 });
